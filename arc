@@ -1,7 +1,7 @@
 #!/bin/bash
 
 #show usage
-ERR="usage: arc [-a] 7z-file [directory-of-files]"
+ERR="usage: arc [-a] [-u] 7z-file [directory-of-files]"
 if [ "$#" == "0" ] || [ "$1" == "--help" ];
 then
     echo "$ERR"
@@ -10,12 +10,24 @@ fi
 
 #get values
 ALL=false
+ULTRA=false
 DIR="."
-if [ "$1" == "-a" ];
-then
-    ALL=true
-    shift
-fi
+DONE=false
+while [ "$DONE" = false ];
+do
+    case "$1" in
+    "-a")
+        ALL=true
+        shift
+        ;;
+    "-u")
+        ULTRA=true
+        shift
+        ;;
+    *)
+        DONE=true
+        ;;
+done
 case "$#" in
 2)
     DIR="$2"
@@ -69,6 +81,12 @@ do
 done
 
 #archive files
-COMMAND="7z a -t7z -m0=lzma -mx=9 -mfb=64 -md=32m -ms=on $ZFILE$FILES"
+if [ "$ULTRA" = true ];
+then
+    COMMAND="7z a -t7z -m0=lzma -mx=9 -mfb=64 -md=32m -ms=on"
+else
+    COMMAND="7z a -t7z -ms=on"
+fi
+COMMAND+=" $ZFILE$FILES"
 eval $COMMAND
 exit 0
