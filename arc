@@ -50,7 +50,7 @@ do
         DONE=false
         if [ "$ALL" = true ];
         then
-            FILES+=" $ENTRY"
+            FILES+=" \"$ENTRY\""
             DONE=true
         fi
         while [ "$DONE" = false ];
@@ -58,7 +58,7 @@ do
             read -er -n 1 -p "$ENTRY (y/n) "
             if [[ $REPLY =~ ^[yY]$ ]];
             then
-                FILES+=" $ENTRY"
+                FILES+=" \"$ENTRY\""
                 DONE=true
             else if [[ $REPLY =~ ^[nN]$ ]];
             then
