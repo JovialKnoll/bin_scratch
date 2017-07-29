@@ -27,6 +27,7 @@ do
     *)
         DONE=true
         ;;
+    esac
 done
 case "$#" in
 2)
