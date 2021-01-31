@@ -47,7 +47,11 @@ function upa () {
 fi
 
 # edit scite properties
-echo '# Show line numbers:
+if [ -f ".SciTEUser.properties" ];
+then
+    echo "SciTE properties already exist"
+else
+    echo '# Show line numbers:
 line.margin.visible=1
 
 # Set tabs to 4 spaces:
@@ -80,3 +84,4 @@ statusbar.visible=1
 # show full path in the SciTE application window title bar:
 # (just the filename will remain in the tab caption)
 title.full.path=1' >> .SciTEUser.properties
+fi
