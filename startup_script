@@ -1,0 +1,47 @@
+#!/bin/bash
+
+# setup script for a lubuntu / windows dual boot system
+
+# make linux use local time to play nice with windows
+timedatectl set-local-rtc 1 --adjust-system-clock
+
+# removing
+sudo apt-get remove --purge libreoffice*
+sudo apt-get clean
+sudo apt-get autoremove
+sudo apt remove featherpad vim noblenote 2048-qt skanlite quassel trojita k3b
+
+# getting
+sudo apt update
+sudo apt full-upgrade
+sudo apt install scite filezilla curl openssh-server blueman python-is-python3 screen flatpak
+sudo apt autoremove
+
+# youtube-dl
+sudo curl -L https://yt-dl.org/downloads/latest/youtube-dl -o /usr/local/bin/youtube-dl
+sudo chmod a+rx /usr/local/bin/youtube-dl
+
+# retroarch
+flatpak remote-add --user --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+flatpak install --user flathub org.libretro.RetroArch
+
+# change ssh port
+sed -i 's/^#Port.*/Port 2213' /etc/ssh/sshd_config
+
+# go to start directory
+cd ~
+
+# make update function
+if grep -Fxq "function upa () {" .bashrc
+then
+    echo "quick update function exists"
+else
+    echo "adding quick update function"
+    echo "" >> .bashrc
+    echo "# add quick update function" >> .bashrc
+    echo "function upa () {" >> .bashrc
+    echo "    sudo apt update && sudo apt full-upgrade && sudo apt autoremove" >> .bashrc
+    echo "    sudo youtube-dl -U" >> .bashrc
+    echo "    flatpak update --user org.libretro.RetroArch" >> .bashrc
+    echo "}" >> .bashrc
+fi
