@@ -49,7 +49,7 @@ fi
 # edit scite properties
 if [ -f ".SciTEUser.properties" ];
 then
-    echo "SciTE properties already exist"
+    echo "SciTE properties file already exists"
 else
     echo '# Show line numbers:
 line.margin.visible=1
