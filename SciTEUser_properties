@@ -1,0 +1,33 @@
+# Show line numbers:
+line.margin.visible=1
+
+# Set tabs to 4 spaces:
+tabsize=4
+indent.size=4
+use.tabs=0
+
+# Show whitespaces:
+view.whitespace=1
+
+# Set monospaced font:
+font.base=$(font.monospace)
+font.small=$(font.monospace)
+font.comment=$(font.monospace)
+font.text=$(font.monospace)
+font.text.comment=$(font.monospace)
+font.embedded.base=$(font.monospace)
+font.embedded.comment=$(font.monospace)
+font.vbs=$(font.monospace)
+
+# open files in the last directory:
+open.dialog.in.file.directory=1
+
+# show all files:
+open.filter=$(all.files)Source Files (cpp,c,h,mak)|*.cpp;*.c;*.h;*.mak;makefile|Web Files (htm, html, css, xml, shtml, js, pl, asp)|*.html;*.htm;*.css;*.shtml;*.js;*.pl;*.xml;*.asp|Text (txt, doc)|*.txt;*.doc|
+
+# show status bar:
+statusbar.visible=1
+
+# show full path in the SciTE application window title bar:
+# (just the filename will remain in the tab caption)
+title.full.path=1
