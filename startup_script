@@ -14,6 +14,18 @@ while true; do
 done
 
 while true; do
+    read -p "Support tap to click? " resp
+    case $resp in
+        [Yy]* )
+            sudo cp 30-touchpad.conf /etc/X11/xorg.conf.d/;
+            break;;
+        [Nn]* )
+            break;;
+        * ) echo "Answer yes or no.";;
+    esac
+done
+
+while true; do
     read -p "Keep libreoffice? " resp
     case $resp in
         [Yy]* )
