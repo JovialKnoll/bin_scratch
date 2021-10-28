@@ -1,12 +1,31 @@
 #!/bin/bash
 
-# setup script for a lubuntu / windows dual boot system
+while true; do
+    read -p "Is this a dual boot system? " resp
+    case $resp in
+        [Yy]* )
+            # make linux use local time to play nice with windows
+            timedatectl set-local-rtc 1 --adjust-system-clock;
+            break;;
+        [Nn]* )
+            break;;
+        * ) echo "Answer yes or no.";;
+    esac
+done
 
-# make linux use local time to play nice with windows
-timedatectl set-local-rtc 1 --adjust-system-clock
+while true; do
+    read -p "Keep libreoffice? " resp
+    case $resp in
+        [Yy]* )
+            break;;
+        [Nn]* )
+            sudo apt-get remove --purge libreoffice*;
+            break;;
+        * ) echo "Answer yes or no.";;
+    esac
+done
 
 # removing packages
-sudo apt-get remove --purge libreoffice*
 sudo apt-get clean
 sudo apt-get autoremove
 sudo apt remove featherpad vim noblenote 2048-qt skanlite quassel trojita k3b
@@ -34,7 +53,7 @@ cp SciTEUser_properties ~/.SciTEUser.properties
 # go to start directory
 cd ~
 
-# make update function
+# make easy update function
 if grep -Fxq "function upa () {" .bashrc
 then
     echo "quick update function exists"
