@@ -38,8 +38,8 @@ while true; do
 done
 
 # removing packages
-sudo apt-get clean
-sudo apt-get autoremove
+sudo apt clean
+sudo apt autoremove
 sudo apt remove featherpad vim noblenote 2048-qt skanlite quassel trojita k3b
 
 # getting packages
