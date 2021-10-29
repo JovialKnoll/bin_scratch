@@ -62,11 +62,8 @@ sudo sed -i 's/^#Port.*/Port 2213/' /etc/ssh/sshd_config
 # copy over scite properties
 cp SciTEUser_properties ~/.SciTEUser.properties
 
-# go to start directory
-cd ~
-
 # make easy update function
-if grep -Fxq "function upa () {" .bashrc
+if grep -Fxq "function upa () {" ~/.bashrc
 then
     echo "quick update function exists"
 else
@@ -77,5 +74,5 @@ function upa () {
     sudo apt update && sudo apt full-upgrade && sudo apt autoremove
     sudo youtube-dl -U
     flatpak update --user org.libretro.RetroArch
-}' >> .bashrc
+}' >> ~/.bashrc
 fi
