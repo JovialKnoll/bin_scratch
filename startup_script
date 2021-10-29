@@ -57,7 +57,14 @@ flatpak remote-add --user --if-not-exists flathub https://flathub.org/repo/flath
 flatpak install --user flathub org.libretro.RetroArch
 
 # change ssh port
-sudo sed -i 's/^#Port.*/Port 2213/' /etc/ssh/sshd_config
+while :; do
+    read -ep 'Enter ssh port: ' port
+    [[ $port =~ ^[[:digit:]]+$ ]] || continue
+    (( ( (port=(10#$port)) <= 65535 ) && port >= 1023 )) || continue
+    # checking for valid new port
+    break
+done
+sudo sed -i "s/^#Port.*/Port $port/" /etc/ssh/sshd_config
 
 # copy over scite properties
 cp SciTEUser_properties ~/.SciTEUser.properties
