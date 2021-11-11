@@ -91,7 +91,7 @@ while true; do
         [Yy]* )
             if ! grep -Fq "<!-- window snapping -->" ~/.config/openbox/lxqt-rc.xml
             then
-                sed -i -e "/<\/keyboard>.*/r lxqt-rc_replacement.txt" -e "s///" ~/.config/openbox/lxqt-rc.xml;
+                sed -i -e "/  <\/keyboard>.*/r rc_replacement.txt" -e "s///" ~/.config/openbox/rc.xml;
                 openbox --reconfigure;
             fi
             echo;
