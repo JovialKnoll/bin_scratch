@@ -83,3 +83,19 @@ function upa () {
     flatpak update --user org.libretro.RetroArch
 }' >> ~/.bashrc
 fi
+
+# set up window snapping on lubuntu
+while true; do
+    read -p "Using Lubuntu? " resp
+    case $resp in
+        [Yy]* )
+            if ! grep -Fq "<!-- window snapping -->" ~/.config/openbox/lxqt-rc.xml
+            then
+                sed -i -e "/<\/keyboard>.*/r lxqt-rc_replacement.txt" -e "s///" ~/.config/openbox/lxqt-rc.xml;
+            fi
+            break;;
+        [Nn]* )
+            break;;
+        * ) echo "Answer yes or no.";;
+    esac
+done
