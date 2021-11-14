@@ -60,7 +60,7 @@ flatpak install --user flathub org.libretro.RetroArch
 while :; do
     read -ep 'Enter ssh port: ' port
     [[ $port =~ ^[[:digit:]]+$ ]] || continue
-    (( ( (port=(10#$port)) <= 65535 ) && port >= 1023 )) || continue
+    (( ( (port=(10#$port)) <= 65535 ) && port > 1024 )) || continue
     # checking for valid new port
     break
 done
