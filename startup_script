@@ -1,6 +1,46 @@
 #!/bin/bash
 
 while true; do
+    read -p "Remove libreoffice? " resp
+    case $resp in
+        [Yy]* )
+            sudo apt-get remove --purge libreoffice*;
+            break;;
+        [Nn]* )
+            break;;
+        * ) echo "Answer yes or no.";;
+    esac
+done
+
+while true; do
+    read -p "First time package setup? " resp
+    case $resp in
+        [Yy]* )
+            # removing packages
+            sudo apt clean
+            sudo apt autoremove
+            sudo apt remove featherpad vim noblenote 2048-qt skanlite quassel trojita k3b
+            # getting packages
+            sudo apt update
+            sudo apt full-upgrade
+            sudo apt install scite filezilla curl openssh-server blueman python-is-python3 screen flatpak
+            sudo apt autoremove
+            break;;
+        [Nn]* )
+            break;;
+        * ) echo "Answer yes or no.";;
+    esac
+done
+
+# getting youtube-dl
+sudo curl -L https://yt-dl.org/downloads/latest/youtube-dl -o /usr/local/bin/youtube-dl
+sudo chmod a+rx /usr/local/bin/youtube-dl
+
+# getting retroarch
+flatpak remote-add --user --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+flatpak install --user flathub org.libretro.RetroArch
+
+while true; do
     read -p "Is this a dual boot system? " resp
     case $resp in
         [Yy]* )
@@ -25,46 +65,20 @@ while true; do
     esac
 done
 
-while true; do
-    read -p "Keep libreoffice? " resp
-    case $resp in
-        [Yy]* )
-            break;;
-        [Nn]* )
-            sudo apt-get remove --purge libreoffice*;
-            break;;
-        * ) echo "Answer yes or no.";;
-    esac
-done
-
-# removing packages
-sudo apt clean
-sudo apt autoremove
-sudo apt remove featherpad vim noblenote 2048-qt skanlite quassel trojita k3b
-
-# getting packages
-sudo apt update
-sudo apt full-upgrade
-sudo apt install scite filezilla curl openssh-server blueman python-is-python3 screen flatpak
-sudo apt autoremove
-
-# getting youtube-dl
-sudo curl -L https://yt-dl.org/downloads/latest/youtube-dl -o /usr/local/bin/youtube-dl
-sudo chmod a+rx /usr/local/bin/youtube-dl
-
-# getting retroarch
-flatpak remote-add --user --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
-flatpak install --user flathub org.libretro.RetroArch
-
 # change ssh port
-while :; do
-    read -ep 'Enter ssh port: ' port
-    [[ $port =~ ^[[:digit:]]+$ ]] || continue
-    (( ( (port=(10#$port)) <= 65535 ) && port > 1024 )) || continue
-    # checking for valid new port
-    break
-done
-sudo sed -i "s/^#Port.*/Port $port/" /etc/ssh/sshd_config
+if grep -Fxq "#Port" /etc/ssh/sshd_config
+then
+    while :; do
+        read -ep 'Enter ssh port: ' port
+        [[ $port =~ ^[[:digit:]]+$ ]] || continue
+        (( ( (port=(10#$port)) <= 65535 ) && port > 1024 )) || continue
+        # checking for valid new port
+        break
+    done
+    sudo sed -i "s/^#Port.*/Port $port/" /etc/ssh/sshd_config
+else
+    echo "ssh port has already been set"
+fi
 
 # copy over scite properties
 cp SciTEUser_properties ~/.SciTEUser.properties
@@ -78,28 +92,28 @@ else
     echo '
 # add quick update function
 function upa () {
-    sudo apt update && sudo apt full-upgrade && sudo apt autoremove
-    sudo youtube-dl -U
-    flatpak update --user org.libretro.RetroArch
-}' >> ~/.bashrc
+    sudo apt update && sudo apt full-upgrade && sudo apt autoremove' >> ~/.bashrc
+    echo '    sudo youtube-dl -U' >> ~/.bashrc
+    echo '    flatpak update --user org.libretro.RetroArch' >> ~/.bashrc
+    echo '}' >> ~/.bashrc
 fi
 
 # set up window snapping on lubuntu
-while true; do
-    read -p "Using Lubuntu? " resp
-    case $resp in
-        [Yy]* )
-            if ! grep -Fq "<!-- window snapping -->" ~/.config/openbox/lxqt-rc.xml
-            then
+if ! grep -Fq "<!-- window snapping -->" ~/.config/openbox/lxqt-rc.xml
+then
+    while true; do
+        read -p "Using Lubuntu? " resp
+        case $resp in
+            [Yy]* )
                 sed -i -e "/  <\/keyboard>.*/r rc_replacement.txt" -e "s///" ~/.config/openbox/rc.xml;
                 openbox --reconfigure;
-            fi
-            echo;
-            echo 'Turn off "Super_L" in Menu > Preferences > LXQt settings > Shortcut Keys';
-            echo;
-            break;;
-        [Nn]* )
-            break;;
-        * ) echo "Answer yes or no.";;
-    esac
-done
+                echo;
+                echo 'Turn off "Super_L" in Menu > Preferences > LXQt settings > Shortcut Keys';
+                echo;
+                break;;
+            [Nn]* )
+                break;;
+            * ) echo "Answer yes or no.";;
+        esac
+    done
+fi
