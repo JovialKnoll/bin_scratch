@@ -33,6 +33,7 @@ while true; do
 done
 
 # getting retroarch
+retroarch_installed=false
 while true; do
     read -p "Retroarch setup? " resp
     case $resp in
@@ -40,6 +41,7 @@ while true; do
             sudo apt install flatpak
             flatpak remote-add --user --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
             flatpak install --user flathub org.libretro.RetroArch
+            retroarch_installed=true
             break;;
         [Nn]* )
             break;;
@@ -111,7 +113,10 @@ function upa () {
     then
         echo '    sudo youtube-dl -U;' >> ~/.bashrc
     fi
-    echo '    flatpak update --user org.libretro.RetroArch;' >> ~/.bashrc
+    if [ "$retroarch_installed" = true ]
+    then
+        echo '    flatpak update --user org.libretro.RetroArch;' >> ~/.bashrc
+    fi
     echo '}' >> ~/.bashrc
 fi
 
