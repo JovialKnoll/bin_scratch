@@ -23,8 +23,23 @@ while true; do
             # getting packages
             sudo apt update
             sudo apt full-upgrade
-            sudo apt install scite filezilla curl openssh-server blueman python-is-python3 screen flatpak
+            sudo apt install scite filezilla curl openssh-server blueman python-is-python3 screen
             sudo apt autoremove
+            break;;
+        [Nn]* )
+            break;;
+        * ) echo "Answer yes or no.";;
+    esac
+done
+
+# getting retroarch
+while true; do
+    read -p "Retroarch setup? " resp
+    case $resp in
+        [Yy]* )
+            sudo apt install flatpak
+            flatpak remote-add --user --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+            flatpak install --user flathub org.libretro.RetroArch
             break;;
         [Nn]* )
             break;;
@@ -38,10 +53,6 @@ then
     sudo curl -L https://yt-dl.org/downloads/latest/youtube-dl -o /usr/local/bin/youtube-dl
     sudo chmod a+rx /usr/local/bin/youtube-dl
 fi
-
-# getting retroarch
-flatpak remote-add --user --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
-flatpak install --user flathub org.libretro.RetroArch
 
 while true; do
     read -p "Is this a dual boot system? " resp
