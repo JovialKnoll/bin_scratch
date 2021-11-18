@@ -92,9 +92,9 @@ else
     echo '
 # add quick update function
 function upa () {
-    sudo apt update && sudo apt full-upgrade && sudo apt autoremove' >> ~/.bashrc
-    echo '    sudo youtube-dl -U' >> ~/.bashrc
-    echo '    flatpak update --user org.libretro.RetroArch' >> ~/.bashrc
+    sudo apt update && sudo apt full-upgrade && sudo apt autoremove;' >> ~/.bashrc
+    echo '    sudo youtube-dl -U;' >> ~/.bashrc
+    echo '    flatpak update --user org.libretro.RetroArch;' >> ~/.bashrc
     echo '}' >> ~/.bashrc
 fi
 
