@@ -99,10 +99,26 @@ fi
 # copy over scite properties
 cp SciTEUser_properties ~/.SciTEUser.properties
 
+# set up git branch display
+if grep -Fxq "parse_git_branch() {" ~/.bashrc
+then
+    echo "git branch display already exists"
+else
+    echo "adding git branch display"
+    echo "
+# add git branch display
+parse_git_branch() {
+     git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/(\1)/'
+}
+" >> ~/.bashrc
+    echo 'PS1_partial=${PS1::-3}'>> ~/.bashrc
+    echo 'PS1="$PS1_partial \[\e[91m\]\$(parse_git_branch)\[\e[00m\]$ "'>> ~/.bashrc
+fi
+
 # make easy update function
 if grep -Fxq "function upa () {" ~/.bashrc
 then
-    echo "quick update function exists"
+    echo "quick update function already exists"
 else
     echo "adding quick update function"
     echo '
@@ -121,8 +137,10 @@ function upa () {
 fi
 
 # set up window snapping on lubuntu
-if ! grep -Fq "<!-- window snapping -->" ~/.config/openbox/lxqt-rc.xml
+if grep -Fq "<!-- window snapping -->" ~/.config/openbox/rc.xml
 then
+    echo "lubuntu setup already done"
+else
     while true; do
         read -p "Using Lubuntu? " resp
         case $resp in
