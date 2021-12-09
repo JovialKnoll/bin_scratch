@@ -23,7 +23,7 @@ while true; do
             # getting packages
             sudo apt update
             sudo apt full-upgrade
-            sudo apt install scite filezilla curl openssh-server blueman python-is-python3 screen
+            sudo apt install scite filezilla curl openssh-server blueman python-is-python3 screen p7zip-full
             sudo apt autoremove
             break;;
         [Nn]* )
