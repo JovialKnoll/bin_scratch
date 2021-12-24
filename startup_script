@@ -32,6 +32,13 @@ while true; do
     esac
 done
 
+# getting youtube-dl
+if [ ! -f /usr/local/bin/youtube-dl ]
+then
+    sudo curl -L https://yt-dl.org/downloads/latest/youtube-dl -o /usr/local/bin/youtube-dl
+    sudo chmod a+rx /usr/local/bin/youtube-dl
+fi
+
 # getting retroarch
 retroarch_installed=false
 while true; do
@@ -48,13 +55,6 @@ while true; do
         * ) echo "Answer yes or no.";;
     esac
 done
-
-# getting youtube-dl
-if [ ! -f /usr/local/bin/youtube-dl ]
-then
-    sudo curl -L https://yt-dl.org/downloads/latest/youtube-dl -o /usr/local/bin/youtube-dl
-    sudo chmod a+rx /usr/local/bin/youtube-dl
-fi
 
 while true; do
     read -p "Is this a dual boot system? " resp
@@ -108,9 +108,8 @@ else
     echo "
 # add git branch display
 parse_git_branch() {
-     git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/(\1)/'
-}
-" >> ~/.bashrc
+    git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/(\1)/'
+}" >> ~/.bashrc
     echo 'PS1_partial=${PS1::-3}'>> ~/.bashrc
     echo 'PS1="$PS1_partial \[\e[91m\]\$(parse_git_branch)\[\e[00m\]$ "'>> ~/.bashrc
 fi
