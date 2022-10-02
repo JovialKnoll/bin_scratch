@@ -136,7 +136,8 @@ function upa () {
 fi
 
 # set up window snapping on lubuntu
-if grep -Fq "<!-- window snapping -->" ~/.config/openbox/rc.xml
+RC=~/.config/openbox/rc.xml
+if [ -f "$RC" ];
 then
     echo "lubuntu setup already done"
 else
@@ -144,7 +145,8 @@ else
         read -p "Using Lubuntu? " resp
         case $resp in
             [Yy]* )
-                sed -i -e "/  <\/keyboard>.*/r rc_replacement.txt" -e "s///" ~/.config/openbox/rc.xml;
+                cp /etc/xdg/xdg-Lubuntu/openbox/rc.xml ~/.config/openbox/rc.xml
+                sudo sed -i -e "/  <\/keyboard>.*/r rc_replacement.txt" -e "s///" ~/.config/openbox/rc.xml;
                 openbox --reconfigure;
                 echo;
                 echo 'Turn off "Super_L" in Menu > Preferences > LXQt settings > Shortcut Keys';
