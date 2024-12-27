@@ -23,7 +23,7 @@ while true; do
             # getting packages
             sudo apt update
             sudo apt full-upgrade
-            sudo apt install scite filezilla curl openssh-server blueman python-is-python3 python3-pip screen p7zip-full xxd pngcrush ffmpeg
+            sudo apt install scite filezilla curl blueman screen p7zip-full xxd pngcrush ffmpeg
             sudo apt autoremove
             break;;
         [Nn]* )
@@ -74,6 +74,18 @@ while true; do
     case $resp in
         [Yy]* )
             sudo cp 30-touchpad.conf /etc/X11/xorg.conf.d/;
+            break;;
+        [Nn]* )
+            break;;
+        * ) echo "Answer yes or no.";;
+    esac
+done
+
+while true; do
+    read -p "openssh-server? " resp
+    case $resp in
+        [Yy]* )
+            sudo apt install openssh-server
             break;;
         [Nn]* )
             break;;
