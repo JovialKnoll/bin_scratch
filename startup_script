@@ -19,7 +19,7 @@ while true; do
             # removing packages
             sudo apt clean
             sudo apt autoremove
-            sudo apt remove featherpad vim noblenote 2048-qt skanlite quassel trojita k3b
+            sudo apt remove featherpad vim noblenote 2048-qt skanlite quassel k3b
             # getting packages
             sudo apt update
             sudo apt full-upgrade
