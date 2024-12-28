@@ -33,10 +33,10 @@ while true; do
 done
 
 # getting youtube-dl
-if [ ! -f /usr/local/bin/youtube-dl ]
+if [ ! -f /usr/local/bin/yt-dlp ]
 then
-    sudo curl -L https://yt-dl.org/downloads/latest/youtube-dl -o /usr/local/bin/youtube-dl
-    sudo chmod a+rx /usr/local/bin/youtube-dl
+    sudo curl -L https://github.com/yt-dlp/yt-dlp/releases/latest/download/yt-dlp -o /usr/local/bin/yt-dlp
+    sudo chmod a+rx /usr/local/bin/yt-dlp
 fi
 
 # getting retroarch
@@ -137,9 +137,9 @@ else
 function upa () {
     sudo apt update && sudo apt full-upgrade && sudo apt autoremove;
     sudo snap refresh;' >> ~/.bashrc
-    if [ -f /usr/local/bin/youtube-dl ]
+    if [ -f /usr/local/bin/yt-dlp ]
     then
-        echo '    sudo youtube-dl -U;' >> ~/.bashrc
+        echo '    sudo yt-dlp -U;' >> ~/.bashrc
     fi
     if [ "$retroarch_installed" = true ]
     then
