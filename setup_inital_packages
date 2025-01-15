@@ -1,0 +1,8 @@
+#!/bin/bash
+
+sudo apt clean
+sudo apt remove featherpad vim noblenote 2048-qt skanlite quassel
+sudo apt update
+sudo apt full-upgrade
+sudo apt install filezilla curl blueman screen p7zip-full xxd pngcrush ffmpeg
+sudo apt autoremove
