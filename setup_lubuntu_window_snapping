@@ -1,0 +1,26 @@
+#!/bin/bash
+
+# set up window snapping on lubuntu
+RC=~/.config/openbox/rc.xml
+if [ -f "$RC" ];
+then
+    echo "lubuntu setup already done"
+else
+    while true; do
+        read -p "Using Lubuntu? " resp
+        case $resp in
+            [Yy]* )
+                mkdir -p ~/.config/openbox
+                cp /etc/xdg/xdg-Lubuntu/openbox/rc.xml ~/.config/openbox/rc.xml
+                sudo sed -i -e "/  <\/keyboard>.*/r rc_replacement.txt" -e "s///" ~/.config/openbox/rc.xml;
+                openbox --reconfigure;
+                echo;
+                echo 'Turn off "Super_L" in Menu > Preferences > LXQt settings > Shortcut Keys';
+                echo;
+                break;;
+            [Nn]* )
+                break;;
+            * ) echo "Answer yes or no.";;
+        esac
+    done
+fi

@@ -1,0 +1,4 @@
+#!/bin/bash
+
+sudo apt install scite;
+cp SciTEUser_properties ~/.SciTEUser.properties;

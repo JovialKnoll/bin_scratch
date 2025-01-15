@@ -1,0 +1,17 @@
+#!/bin/bash
+
+sudo apt install openssh-server
+# change ssh port
+if grep -Fxq "#Port" /etc/ssh/sshd_config
+then
+    while :; do
+        read -ep 'Enter ssh port: ' port
+        [[ $port =~ ^[[:digit:]]+$ ]] || continue
+        (( ( (port=(10#$port)) <= 65535 ) && port > 1024 )) || continue
+        # checking for valid new port
+        break
+    done
+    sudo sed -i "s/^#Port.*/Port $port/" /etc/ssh/sshd_config
+else
+    echo "ssh port has already been set"
+fi
