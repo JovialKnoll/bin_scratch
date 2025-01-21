@@ -7,7 +7,7 @@ else
     echo "adding quick update function"
     echo '
 # add quick update function
-function upa () {
+function upa() {
     sudo apt update && sudo apt full-upgrade && sudo apt autoremove;
     sudo snap refresh;' >> ~/.bashrc
     if [ -f /usr/local/bin/yt-dlp ]
