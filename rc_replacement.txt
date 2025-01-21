@@ -1,80 +1,80 @@
   <!-- window snapping -->
-  <keybind key="Super-Left">
-    <action name="UnmaximizeFull"/>
-    <action name="MoveResizeTo">
-      <width>50%</width>
-      <height>100%</height>
-      <x>0%</x>
-      <y>0%</y>
-    </action>
-  </keybind>
-  <keybind key="Super-Right">
-    <action name="UnmaximizeFull"/>
-    <action name="MoveResizeTo">
-      <width>50%</width>
-      <height>100%</height>
-      <x>50%</x>
-      <y>0%</y>
-    </action>
-  </keybind>
-  <keybind key="Super-Up">
-    <action name="Maximize"/>
-  </keybind>
-  <keybind key="Super-Down">
-    <action name="UnmaximizeFull"/>
-  </keybind>
-  <keybind key="C-Super-Up">
-    <action name="UnmaximizeFull"/>
-    <action name="MoveResizeTo">
-      <width>100%</width>
-      <height>50%</height>
-      <x>0%</x>
-      <y>0%</y>
-    </action>
-  </keybind>
-  <keybind key="C-Super-Down">
-    <action name="UnmaximizeFull"/>
-    <action name="MoveResizeTo">
-      <width>100%</width>
-      <height>50%</height>
-      <x>0%</x>
-      <y>50%</y>
-    </action>
-  </keybind>
-  <keybind key="C-Super-Left">
-    <action name="UnmaximizeFull"/>
-    <action name="MoveResizeTo">
-      <width>50%</width>
-      <height>50%</height>
-      <x>0%</x>
-      <y>0%</y>
-    </action>
-  </keybind>
-  <keybind key="C-Super-Right">
-    <action name="UnmaximizeFull"/>
-    <action name="MoveResizeTo">
-      <width>50%</width>
-      <height>50%</height>
-      <x>50%</x>
-      <y>0%</y>
-    </action>
-  </keybind>
-  <keybind key="A-Super-Left">
-    <action name="UnmaximizeFull"/>
-    <action name="MoveResizeTo">
-      <width>50%</width>
-      <height>50%</height>
-      <x>0%</x>
-      <y>50%</y>
-    </action>
-  </keybind>
-  <keybind key="A-Super-Right">
-    <action name="UnmaximizeFull"/>
-    <action name="MoveResizeTo">
-      <width>50%</width>
-      <height>50%</height>
-      <x>50%</x>
-      <y>50%</y>
-    </action>
-  </keybind>
-</keyboard>
+    <keybind key="Super-Left">
+      <action name="UnmaximizeFull"/>
+      <action name="MoveResizeTo">
+        <width>50%</width>
+        <height>100%</height>
+        <x>0%</x>
+        <y>0%</y>
+      </action>
+    </keybind>
+    <keybind key="Super-Right">
+      <action name="UnmaximizeFull"/>
+      <action name="MoveResizeTo">
+        <width>50%</width>
+        <height>100%</height>
+        <x>50%</x>
+        <y>0%</y>
+      </action>
+    </keybind>
+    <keybind key="Super-Up">
+      <action name="Maximize"/>
+    </keybind>
+    <keybind key="Super-Down">
+      <action name="UnmaximizeFull"/>
+    </keybind>
+    <keybind key="C-Super-Up">
+      <action name="UnmaximizeFull"/>
+      <action name="MoveResizeTo">
+        <width>100%</width>
+        <height>50%</height>
+        <x>0%</x>
+        <y>0%</y>
+      </action>
+    </keybind>
+    <keybind key="C-Super-Down">
+      <action name="UnmaximizeFull"/>
+      <action name="MoveResizeTo">
+        <width>100%</width>
+        <height>50%</height>
+        <x>0%</x>
+        <y>50%</y>
+      </action>
+    </keybind>
+    <keybind key="C-Super-Left">
+      <action name="UnmaximizeFull"/>
+      <action name="MoveResizeTo">
+        <width>50%</width>
+        <height>50%</height>
+        <x>0%</x>
+        <y>0%</y>
+      </action>
+    </keybind>
+    <keybind key="C-Super-Right">
+      <action name="UnmaximizeFull"/>
+      <action name="MoveResizeTo">
+        <width>50%</width>
+        <height>50%</height>
+        <x>50%</x>
+        <y>0%</y>
+      </action>
+    </keybind>
+    <keybind key="A-Super-Left">
+      <action name="UnmaximizeFull"/>
+      <action name="MoveResizeTo">
+        <width>50%</width>
+        <height>50%</height>
+        <x>0%</x>
+        <y>50%</y>
+      </action>
+    </keybind>
+    <keybind key="A-Super-Right">
+      <action name="UnmaximizeFull"/>
+      <action name="MoveResizeTo">
+        <width>50%</width>
+        <height>50%</height>
+        <x>50%</x>
+        <y>50%</y>
+      </action>
+    </keybind>
+  </keyboard>

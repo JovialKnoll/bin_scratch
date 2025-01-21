@@ -1,4 +1,4 @@
 #!/bin/bash
 
 # make linux use local time to play nice with windows
-timedatectl set-local-rtc 1 --adjust-system-clock;
+timedatectl set-local-rtc 1 --adjust-system-clock
